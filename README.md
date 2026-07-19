@@ -75,9 +75,9 @@ After tackling the severe class imbalances within the data, all four models were
 
 | Model Architecture | Test Accuracy | Precision (Weighted) | Recall (Weighted) | F1-Score (Weighted) | Inference Speed (per text) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **SimpleRNN** |0.720196 |	0.738547 |	0.720196 |	0.724423 | **Fastest** (~5ms) |
-| **LSTM** | 0.846397 |	0.849271 |	0.846397 | 0.846813| Fast (~12ms) |
-| **GRU** | 0.850099 |	0.854326 |	0.850099 |	0.850767 | Fast (~10ms) |
+| **SimpleRNN** |72.0196 % |73.8547 % |	72.0196 % |	72.4423 % | **Fastest** (~5ms) |
+| **LSTM** | 84.6397 % |	84.9271 % |	84.6397 % | 84.46813 % | Fast (~12ms) |
+| **GRU** | 85.0099 % |	85.4326 % |	85.0099 % |	85.0767 %| Fast (~10ms) |
 | **DistilBERT (Transformer)**| **86.7650%** | **86.7629** | **86.7650** | **86.7556** | Moderate (~35ms) |
 
 > **💡 Engineering Trade-off:** While **DistilBERT** provides the highest accuracy and outstanding context comprehension, **GRU** stands out as a highly viable alternative for low-resource production environments due to its fast processing speed and compact architecture.
