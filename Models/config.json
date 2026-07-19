@@ -1,0 +1,13 @@
+{
+  "max_vocab_size": 20000,
+  "max_seq_len": 150,
+  "num_classes": 6,
+  "classes": [
+    "Bank account or service",
+    "Credit card",
+    "Debt collection",
+    "Money transfer or virtual currency",
+    "Mortgage",
+    "Student loan"
+  ]
+}
