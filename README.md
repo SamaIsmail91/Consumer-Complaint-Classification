@@ -1,5 +1,4 @@
-Here is the fully professional, comprehensive English version of your README.md file, optimized for GitHub. It includes the business value, architecture comparison, clear instructions on how to add your deployment screenshot, and interactive badges to catch the eye of recruiters.
-# 🏦 Consumer Complaint Classification
+
 
 Markdown
 # 🏦 Consumer Complaint Classification — End-to-End NLP Pipeline
