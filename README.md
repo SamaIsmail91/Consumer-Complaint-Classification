@@ -10,11 +10,19 @@ An end-to-end Natural Language Processing (NLP) pipeline that automatically rout
 * **Reduce Response Latency (SLA):** Transforms complaint routing times from hours (manual) to milliseconds (automated).
 * **Minimize Operational Costs:** Reduces the manual effort required to sort and triage inbound complaints by up to 70%.
 * **Trend Analysis (Data-Driven Insights):** Enables real-time tracking of major customer pain points to assist management in prioritizing systemic product improvements.
-🗂️ Dataset Overview
-
-Source: Consumer Complaints Dataset for NLP on Kaggle, built from complaint narratives in the public CFPB (U.S. Consumer Financial Protection Bureau) complaint database.
+🗂️ Dataset Overview :Source: Consumer Complaints Dataset for NLP on Kaggle, built from complaint narratives in the public CFPB (U.S. Consumer Financial Protection Bureau) complaint database.
 
 Stratified split: train `[N_TRAIN]` / val `[N_VAL]` / test `[N_TEST]`.
+
+Property	Value
+Classes (5)	credit_card, credit_reporting, debt_collection, mortgages_and_loans, retail_banking
+Complaints after class balancing	111,670
+Stratified split	train 80,681 / validation 14,238 / test 16,751 (72% / 13% / 15%)
+Text field	narrative (complaint text)
+Label field	product (category)
+
+The notebook detects the text/label columns automatically, so it also works with the original CFPB column names (Consumer complaint narrative / Product). The narratives in this dataset arrive partly cleaned (lowercase, no punctuation), so the cleaning step changes them only slightly.
+
 
 | Model | Accuracy | Macro Precision | Macro Recall | **Macro F1** | Weighted F1 |
 |---|---|---|---|---|---|
@@ -129,11 +137,14 @@ After tackling the severe class imbalances within the data, all four models were
 
 ## 🎨 Interactive Gradio Web App Deployment
 
-An interactive web UI was deployed using **Gradio** to allow customer support agents and engineers to test live predictions. The app features:
-* A clean text input field for copying and pasting long complaint narratives.
-* A dynamic dropdown to swap between trained architectures on-the-fly.
-* Real-time generation of the predicted category alongside a dynamic **Confidence Score**.
-* A visual horizontal bar chart displaying the **Top-3 probable categories** for deeper validation.
+An interactive UI deployed with Gradio lets support agents and engineers test live predictions. It features:
+
+A text box for pasting a complaint narrative.
+A model selector to switch between the trained architectures on the fly.
+The predicted category with a confidence score (softmax probability).
+A horizontal bar chart of the top-3 most probable categories.
+
+👉 Try it: huggingface.co/spaces/samaismaill/consumer_complaint_classifier_nlp
 
 ### 🖥️ Live App User Interface:
 
