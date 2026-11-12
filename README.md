@@ -1,8 +1,7 @@
 <h1 align="center">🏦 Consumer Complaint Classification</h1> <h3 align="center">End-to-End NLP Pipeline: SimpleRNN · LSTM · GRU · DistilBERT · Gradio</h3> <p align="center"> <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11%2B-blue.svg" alt="Python"></a> <a href="https://www.tensorflow.org/"><img src="https://img.shields.io/badge/TensorFlow-Keras-orange.svg" alt="TensorFlow"></a> <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-Transformers-red.svg" alt="PyTorch"></a> <a href="https://huggingface.co/"><img src="https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face-yellow.svg" alt="Hugging Face"></a> <a href="https://gradio.app/"><img src="https://img.shields.io/badge/Gradio-Deployment-green.svg" alt="Gradio"></a> <a href="https://www.kaggle.com/datasets/shashwatwork/consume-complaints-dataset-fo-nlp"><img src="https://img.shields.io/badge/Dataset-Kaggle-20BEFF.svg" alt="Kaggle dataset"></a> </p> <p align="center"> <b>🚀 <a href="https://huggingface.co/spaces/samaismaill/consumer_complaint_classifier_nlp">Live Demo (Hugging Face Space)</a></b> &nbsp;|&nbsp; <b>📓 <a href="<KAGGLE NOTEBOOK LINK>>">Executed Notebook (Kaggle)</a></b> &nbsp;|&nbsp; <b>🗂️ <a href="https://www.kaggle.com/datasets/shashwatwork/consume-complaints-dataset-fo-nlp">Dataset</a></b> </p>
 
-An end-to-end Natural Language Processing (NLP) pipeline designed to solve a critical operational challenge in the financial sector. This project automates the categorization of unstructured customer complaint narratives and routes them to the correct department (e.g., *Credit card, Mortgage, Debt collection, Student loan*). By replacing manual triage with deep learning models, this system reduces human error, cuts down processing costs, and speeds up response times.
-> ⚠️ Replace every `<...>` and `[ ]` placeholder with numbers from **your own real run**.
-> Never publish numbers produced with the synthetic sample data.
+An end-to-end Natural Language Processing (NLP) pipeline that automatically routes a customer's written complaint to the correct product category (credit card, credit reporting, debt collection, mortgages and loans, retail banking). It compares three recurrent networks built from scratch (SimpleRNN, LSTM, GRU) against a fine-tuned DistilBERT and a classical TF-IDF + Logistic Regression baseline, and serves the models through an interactive Gradio web app that returns the predicted category with a confidence score.
+
 
 ---
 ## Results
@@ -11,10 +10,12 @@ An end-to-end Natural Language Processing (NLP) pipeline designed to solve a cri
 * **Reduce Response Latency (SLA):** Transforms complaint routing times from hours (manual) to milliseconds (automated).
 * **Minimize Operational Costs:** Reduces the manual effort required to sort and triage inbound complaints by up to 70%.
 * **Trend Analysis (Data-Driven Insights):** Enables real-time tracking of major customer pain points to assist management in prioritizing systemic product improvements.
-Dataset: CFPB Consumer Complaint Database, `[N_TOTAL]` complaints used, `[N_CLASSES]` classes.
+🗂️ Dataset Overview
+
+Source: Consumer Complaints Dataset for NLP on Kaggle, built from complaint narratives in the public CFPB (U.S. Consumer Financial Protection Bureau) complaint database.
+
 Stratified split: train `[N_TRAIN]` / val `[N_VAL]` / test `[N_TEST]`.
 
----
 | Model | Accuracy | Macro Precision | Macro Recall | **Macro F1** | Weighted F1 |
 |---|---|---|---|---|---|
 | TF-IDF + LogReg (baseline) | [ ] | [ ] | [ ] | [ ] | [ ] |
