@@ -1,18 +1,4 @@
-
-
-Markdown
-# 🏦 Consumer Complaint Classification — End-to-End NLP Pipeline
-End-to-end NLP pipeline that routes a customer's written complaint to the correct product category
-(credit card, mortgage, debt collection, student loan, ...). It compares three recurrent networks built
-from scratch (SimpleRNN, LSTM, GRU) against a fine-tuned DistilBERT and a TF-IDF + Logistic Regression
-baseline, and serves the best model through a Gradio web app.
-
-[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
-[![Framework](https://img.shields.io/badge/Framework-PyTorch%20%7C%20TensorFlow-orange.svg)](https://github.com/)
-[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face-yellow.svg)](https://huggingface.co/)
-[![Gradio](https://img.shields.io/badge/Gradio-Deployment-green.svg)](https://gradio.app/)
-**Live demo:** `<HUGGING FACE SPACE LINK>` | **Notebook:** `notebooks/Consumer_Complaint_Classification.ipynb`
-| [Open in Colab](`<COLAB LINK>`)
+<h1 align="center">🏦 Consumer Complaint Classification</h1> <h3 align="center">End-to-End NLP Pipeline: SimpleRNN · LSTM · GRU · DistilBERT · Gradio</h3> <p align="center"> <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11%2B-blue.svg" alt="Python"></a> <a href="https://www.tensorflow.org/"><img src="https://img.shields.io/badge/TensorFlow-Keras-orange.svg" alt="TensorFlow"></a> <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-Transformers-red.svg" alt="PyTorch"></a> <a href="https://huggingface.co/"><img src="https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face-yellow.svg" alt="Hugging Face"></a> <a href="https://gradio.app/"><img src="https://img.shields.io/badge/Gradio-Deployment-green.svg" alt="Gradio"></a> <a href="https://www.kaggle.com/datasets/shashwatwork/consume-complaints-dataset-fo-nlp"><img src="https://img.shields.io/badge/Dataset-Kaggle-20BEFF.svg" alt="Kaggle dataset"></a> </p> <p align="center"> <b>🚀 <a href="https://huggingface.co/spaces/samaismaill/consumer_complaint_classifier_nlp">Live Demo (Hugging Face Space)</a></b> &nbsp;|&nbsp; <b>📓 <a href="<KAGGLE NOTEBOOK LINK>">Executed Notebook (Kaggle)</a></b> &nbsp;|&nbsp; <b>🗂️ <a href="https://www.kaggle.com/datasets/shashwatwork/consume-complaints-dataset-fo-nlp">Dataset</a></b> </p>
 
 An end-to-end Natural Language Processing (NLP) pipeline designed to solve a critical operational challenge in the financial sector. This project automates the categorization of unstructured customer complaint narratives and routes them to the correct department (e.g., *Credit card, Mortgage, Debt collection, Student loan*). By replacing manual triage with deep learning models, this system reduces human error, cuts down processing costs, and speeds up response times.
 > ⚠️ Replace every `<...>` and `[ ]` placeholder with numbers from **your own real run**.
