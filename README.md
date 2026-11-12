@@ -1,18 +1,12 @@
 <h1 align="center">🏦 Consumer Complaint Classification</h1> <h3 align="center">End-to-End NLP Pipeline: SimpleRNN · LSTM · GRU · DistilBERT · Gradio</h3> <p align="center"> <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11%2B-blue.svg" alt="Python"></a> <a href="https://www.tensorflow.org/"><img src="https://img.shields.io/badge/TensorFlow-Keras-orange.svg" alt="TensorFlow"></a> <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-Transformers-red.svg" alt="PyTorch"></a> <a href="https://huggingface.co/"><img src="https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face-yellow.svg" alt="Hugging Face"></a> <a href="https://gradio.app/"><img src="https://img.shields.io/badge/Gradio-Deployment-green.svg" alt="Gradio"></a> <a href="https://www.kaggle.com/datasets/shashwatwork/consume-complaints-dataset-fo-nlp"><img src="https://img.shields.io/badge/Dataset-Kaggle-20BEFF.svg" alt="Kaggle dataset"></a> </p> <p align="center"> <b>🚀 <a href="https://huggingface.co/spaces/samaismaill/consumer_complaint_classifier_nlp">Live Demo (Hugging Face Space)</a></b> &nbsp;|&nbsp; <b>📓 <a href="https://www.kaggle.com/code/samaismail91/consumer-complaint-classifier-nlp>">Executed Notebook (Kaggle)</a></b> &nbsp;|&nbsp; <b>🗂️ <a href="https://www.kaggle.com/datasets/shashwatwork/consume-complaints-dataset-fo-nlp">Dataset</a></b> </p>
+An end-to-end Natural Language Processing (NLP) pipeline that automatically routes a customer's written complaint to the correct product category (credit card, credit reporting, debt collection, mortgages and loans, retail banking). It compares three recurrent networks built from scratch (SimpleRNN, LSTM, GRU) against a fine-tuned DistilBERT and a classical TF-IDF + Logistic Regression baseline, and serves the models through an interactive Gradio web app that returns the predicted category with a confidence score. An end-to-end Natural Language Processing (NLP) pipeline that automatically routes a customer's written complaint to the correct product category (credit_card, credit_reporting, debt_collection, mortgages_and_loans, retail_banking). It compares three recurrent networks built from scratch (SimpleRNN, LSTM, GRU) against a fine-tuned DistilBERT and a classical TF-IDF + Logistic Regression baseline, and serves the models through an interactive Gradio web app that returns the predicted category with a confidence score.
 
-An end-to-end Natural Language Processing (NLP) pipeline that automatically routes a customer's written complaint to the correct product category (credit card, credit reporting, debt collection, mortgages and loans, retail banking). It compares three recurrent networks built from scratch (SimpleRNN, LSTM, GRU) against a fine-tuned DistilBERT and a classical TF-IDF + Logistic Regression baseline, and serves the models through an interactive Gradio web app that returns the predicted category with a confidence score.
-
-
----
-## Results
-
-## 🎯 Business Value & Objectives
-* **Reduce Response Latency (SLA):** Transforms complaint routing times from hours (manual) to milliseconds (automated).
-* **Minimize Operational Costs:** Reduces the manual effort required to sort and triage inbound complaints by up to 70%.
-* **Trend Analysis (Data-Driven Insights):** Enables real-time tracking of major customer pain points to assist management in prioritizing systemic product improvements.
-🗂️ Dataset Overview :Source: Consumer Complaints Dataset for NLP on Kaggle, built from complaint narratives in the public CFPB (U.S. Consumer Financial Protection Bureau) complaint database.
-
-Stratified split: train `[N_TRAIN]` / val `[N_VAL]` / test `[N_TEST]`.
+🎯 Business Value & Objectives
+Faster routing: Replaces manual triage of unstructured complaint text with automated, near-instant classification.
+Lower operational cost: Reduces the manual effort needed to sort and route inbound complaints and helps reduce human error.
+Foundation for trend analysis: Once complaints are categorized automatically, management can monitor which product areas generate the most complaints and prioritize product improvements.
+🗂️ Dataset Overview
+Source: Consumer Complaints Dataset for NLP on Kaggle, built from complaint narratives in the public CFPB (U.S. Consumer Financial Protection Bureau) complaint database.
 
 Property	Value
 Classes (5)	credit_card, credit_reporting, debt_collection, mortgages_and_loans, retail_banking
@@ -20,29 +14,34 @@ Complaints after class balancing	111,670
 Stratified split	train 80,681 / validation 14,238 / test 16,751 (72% / 13% / 15%)
 Text field	narrative (complaint text)
 Label field	product (category)
-
 The notebook detects the text/label columns automatically, so it also works with the original CFPB column names (Consumer complaint narrative / Product). The narratives in this dataset arrive partly cleaned (lowercase, no punctuation), so the cleaning step changes them only slightly.
 
-## 🚀 Architectures Compared
-To find the optimal balance between predictive power and production latency (**Accuracy vs. Inference Speed**), four distinct architectures were trained and benchmarked:
-1. **SimpleRNN:** Built from scratch as a baseline sequential model, addressing vanishing gradient constraints.
-2. **LSTM (Long Short-Term Memory):** Implemented to capture long-term context in dense, lengthy complaint narratives via gated cell states.
-3. **GRU (Gated Recurrent Unit):** A lighter, faster variant of LSTM, offering rapid training iterations with highly competitive performance.
-4. **Fine-tuned Transformer (DistilBERT):** Leveraging state-of-the-art Transfer Learning and Self-Attention via Hugging Face to deeply understand context and semantic nuances.
-Full table: `outputs/final_comparison.csv`. Confusion matrices and error analysis are in `outputs/`.
-Key finding: `[one sentence: which model won and by how much over the baseline]`.
+⚠️ No internet / no Kaggle access? See data/download_instructions.md for manual download, or run data/make_sample_data.py to generate a small synthetic file with the same structure. Synthetic data is for smoke-testing the pipeline only; never report metrics from it.
 
----
-## Pipeline
+🧱 Pipeline
+Data – Load the narrative and product columns.
+Preprocessing – Lowercase, strip URLs / numbers / punctuation / XXXX redactions, remove stop words, lemmatize.
+Class imbalance – Majority classes undersampled to at most 3× the smallest class.
+Split – Stratified train / validation / test.
+Sequences – Keras Tokenizer (20,000-word vocabulary, fit on the training split only) and post-padding to 150 tokens.
+Models – Embedding → recurrent stacks built from scratch; DistilBERT through the Hugging Face Trainer.
+Evaluation – Accuracy, precision, recall, F1, confusion matrices, error analysis.
+Deployment – Gradio app on Hugging Face Spaces.
+🚀 Architectures Compared
+To find the right balance between predictive power and production cost, four architectures plus a classical baseline were trained and benchmarked:
 
-## 📁 Project Structure
-1. **Data** - `Consumer complaint narrative` (text) and `Product` (label); keep the top-N classes.
-2. **Preprocessing** - lowercase, strip URLs / numbers / punctuation / CFPB `XXXX` redactions, remove stop words, lemmatize.
-3. **Class imbalance** - majority classes are undersampled to at most 3x the smallest class.
-4. **Split** - stratified train / val / test.
-5. **Sequences** - Keras `Tokenizer` (fit on train only) and post-padding to a fixed length.
-6. **Models** - Embedding then (Bi)RNN / LSTM / GRU stacks built from scratch; DistilBERT via HuggingFace `Trainer`.
-7. **Evaluation** - accuracy, precision, recall, F1 (macro and weighted), confusion matrices, error analysis.
+SimpleRNN – Sequential baseline built from scratch; limited by vanishing gradients on long sequences.
+LSTM (Long Short-Term Memory) – Gated cell states to capture longer context in lengthy complaint narratives.
+GRU (Gated Recurrent Unit) – A lighter variant of LSTM with fewer parameters and faster training.
+Fine-tuned Transformer (DistilBERT) – Transfer learning with self-attention via Hugging Face (distilbert-base-uncased).
+Baseline: TF-IDF + Logistic Regression – 50k features, 1–2-grams, class_weight="balanced"; included to show what deep learning actually adds.
+Training Setup
+Model	Configuration
+SimpleRNN / LSTM / GRU	Embedding (128-d, mask_zero=True) → SpatialDropout (0.2) → Bidirectional layer (64) → recurrent layer (32) → Dropout (0.4) → Dense (64, ReLU, L2) → Dropout (0.3) → softmax. Adam (1e-3), batch 64, up to 20 epochs, early stopping on validation loss, LR reduction on plateau, class weights.
+DistilBERT	Max length 128, 3 epochs, batch 16, learning rate 2e-5, weight decay 0.01, best checkpoint chosen by validation F1, mixed precision on GPU. Fine-tuned in a separate process from TensorFlow, because sharing one process and GPU between the two frameworks can exhaust GPU memory or crash the kernel.
+
+
+
 8. **Deployment** - Gradio app returning the predicted category and a confidence score.
 
 consumer_complaint_project/
